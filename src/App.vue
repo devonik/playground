@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Playground from "@/components/Playground";
+import Playground from "./components/vuetifyFileUploader/Playground";
 
 export default {
   name: 'App',
