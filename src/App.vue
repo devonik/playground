@@ -2,59 +2,81 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      fixed
+      color="light-blue darken-4"
       dark
+      collapse-on-scroll
+      src="./assets/bar-background.jpg"
+      fade-img-on-scroll
     >
-      <div class="d-flex align-center">
+      <template v-slot:img="{ props }">
         <v-img
-          alt="Vuetify Logo"
+            v-bind="props"
+            gradient="to top right, #01579b, rgba(25,32,72,.7)"
+        />
+      </template>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-img
+          alt="Devniks logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="./assets/logo.svg"
           transition="scale-transition"
-          width="40"
-        />
+          width="80"
+      />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-toolbar-title>Devnik's playground</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+      <v-btn href="https://github.com/devonik" target="_blank" text>
+        <v-icon size="34">mdi-github</v-icon>
+        <v-icon size="20" class="align-self-start">mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
+    <v-navigation-drawer
+        v-model="drawer"
+        app
+        temporary
+    >
+      <v-list
+          nav
+          dense
+      >
+        <v-list-item-group
+        >
+          <v-list-item link to="/">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
 
+          <v-list-item link to="/vuetify-file-uploader">
+            <v-list-item-icon>
+              <v-icon>mdi-download</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Vuetify file uploader</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
-      <Playground/>
+      <RouterView/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Playground from "./components/vuetifyFileUploader/Playground";
 
 export default {
   name: 'App',
 
   components: {
-    Playground,
   },
 
   data: () => ({
-    //
+    drawer: false,
   }),
 };
 </script>
