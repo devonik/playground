@@ -16,8 +16,6 @@ const routes = [
   { path: '/vuetify-file-uploader', component: Playground },
 ]
 const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
   routes // short for `routes: routes`
 })
 
